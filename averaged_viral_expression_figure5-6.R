@@ -247,9 +247,9 @@ rr.mexp.htmp.gig2<-ggplot(rr.atabg2) +
 
 
 
-#produce all plots 
-aplot::plot_list(reg1p,rr.mexp.htmp.gig1, g1.avg.pg,widths = c(0.08,1, 0.04))
-aplot::plot_list(reg2p,rr.mexp.htmp.gig2, g2.avg.pg,widths = c(0.08,1, 0.04))
+#produce figure 6 plots 
+rr.mexp.htmp.gig1 %>% insert_right(g1.avg.pg,width = 0.04) %>% insert_left(reg1p,width=0.08)
+rr.mexp.htmp.gig2 %>% insert_right(g2.avg.pg,width = 0.04) %>% insert_left(reg2p,width=0.08)
 
 
 
@@ -295,7 +295,7 @@ deg.pval<-degs %>% pivot_longer(-gig, names_to = "exp",values_to="pval") %>%
   inner_join(deg.rg.tab,by="gig")
   
 
-#Figure 6: Boxplots of DEG genes, regulation and expression
+#Figure 7: Boxplots of DEG genes, regulation and expression
 data <- deg.pval
 
 # Replace missing p-values with 1 (so that -log10(1) = 0)
