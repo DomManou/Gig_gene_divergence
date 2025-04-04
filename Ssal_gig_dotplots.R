@@ -19,19 +19,44 @@ gigs$tentative_nickname<-factor(gigs$tentative_nickname,levels = gigs$tentative_
 ssal_gig1<-gig1.inf[c(which(grepl('ENSSSAG',names(gig1.inf))))]
 ssal_gig2<-gig2.inf[c(which(grepl('ENSSSAG',names(gig2.inf))))]
 
-#Salmon gig1
-for (i in c(1:length(names(ssal_gig1)))){
-  genseq<-ssal_gig1[[i]]
-  genid<-names(ssal_gig1[i])
-  gigid<-gigs[gigs$ensembl_id %in% genid,9] %>% pull()
-  dotPlot(genseq,genseq, wsize = 10,wstep=1,nmatch=9, xlab=gigid,ylab=gigid)
+#make directory
+dir.create("dotplots/gig1", showWarnings = FALSE)
+
+# Loop through each sequence and save dotPlots
+for (i in seq_along(ssal_gig1)) {
+  genseq <- ssal_gig1[[i]]
+  genid <- names(ssal_gig1[i])
+  
+  gigid <- gigs %>%
+    filter(ensembl_id %in% genid) %>%
+    pull(9)
+  
+  filename <- paste0("dotplots/gig1/", genid, "_dotplot.png")
+  
+  # Set the plot size to match 533x420 pixels (SVG format)
+  png(filename)  # SVG dimensions are in inches
+  dotPlot(genseq, genseq, wsize = 10, wstep = 1, nmatch = 9,
+          xlab = gigid, ylab = gigid)
+  dev.off()
 }
 
-#Salmon gig2
-for (z in c(1:length(names(ssal_gig2)))){
-  genseq<-ssal_gig2[[z]]
-  genid<-names(ssal_gig2[z])
-  gigid<-gigs[gigs$ensembl_id %in% genid,9] %>% pull()
-  dotPlot(genseq,genseq, wsize = 10,wstep=1,nmatch=9, xlab=gigid,ylab=gigid)
-}
+#make directory
+dir.create("dotplots/gig2/", showWarnings = FALSE)
 
+# Loop through each sequence and save dotPlots
+for (z in seq_along(ssal_gig2)) {
+  genseq <- ssal_gig2[[z]]
+  genid <- names(ssal_gig2[z])
+  
+  gigid <- gigs %>%
+    filter(ensembl_id %in% genid) %>%
+    pull(9)
+  
+  filename <- paste0("dotplots/gig2", genid, "_dotplot.png")
+  
+  # Set the plot size to match 533x420 pixels (SVG format)
+  png(filename)  # SVG dimensions are in inches
+  dotPlot(genseq, genseq, wsize = 10, wstep = 1, nmatch = 9,
+          xlab = gigid, ylab = gigid)
+  dev.off()
+}
