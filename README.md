@@ -1,6 +1,6 @@
 # Gig_gene_divergence
 
-This is the repository for all scripts used in the analysis and visualization of data for the manuscript "Gene gain and loss drive the diversification of gig immune genes in teleosts: structural and regulatory insights from Atlantic salmon". 
+This is the repository for all scripts used in the analysis and visualization of data for the manuscript "Gene gain and loss drive the diversification of gig immune genes in teleosts: structural and regulatory insights from Atlantic salmon". Pre-print available on bioRxiv (https://doi.org/10.1101/2025.07.01.662619) 
 
 Abstract:
 
